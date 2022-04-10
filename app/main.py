@@ -8,9 +8,13 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
+    mylist = ["https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/UCHCYFG98Z5X1616785960389.jpg", 
+    "https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/SNA19YFCCIKH1616785958624.jpg", 
+    "https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/AEYD63TLZPEV1616785958802.jpg"]
     data = {
-        "page": "Home page"
-    }
+        "page": "Home page",
+        "slider": mylist
+        }
     return templates.TemplateResponse("page.html", {"request": request, "data": data})
 
 
