@@ -13,13 +13,22 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
   
-    mylist = []
-    for url in cur.execute('SELECT image FROM winners'):
-        mylist.append(url[0])
+    people = []
+    titles = []
+    uni = []
+    images = []
+    for url in cur.execute('SELECT * FROM winners'):
+        people.append(url[0])
+        titles.append(url[1])
+        uni.append(url[2])
+        images.append(url[3])
 
     data = {
         "page": "Home page",
-        "slider": mylist
+        "people": people,
+        "titles": titles,
+        "uni": uni,
+        "slider": images,
         }
     return templates.TemplateResponse("page.html", {"request": request, "data": data})
 
