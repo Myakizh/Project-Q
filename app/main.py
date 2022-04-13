@@ -14,13 +14,8 @@ templates = Jinja2Templates(directory="templates")
 async def home(request: Request):
   
     mylist = []
-#    for url in cur.execute('SELECT image FROM winners'):
-#        mylist.append(url)
-#        print(url)
-
-    url = "('https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/UCHCYFG98Z5X1616785960389.jpg',)"
-    for i in range(3):
-        mylist.append(url)
+    for url in cur.execute('SELECT image FROM winners'):
+        mylist.append(url[0])
 
     data = {
         "page": "Home page",
